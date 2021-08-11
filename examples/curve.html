@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>=^.^=</title>
+<style>
+body {
+	margin: 0;
+}
+canvas {
+	display: block;
+}
+.info {
+	position: absolute;
+}
+</style>
+</head>
+<body>
+<div class="info">
+	<p><a href="https://github.com/yomotsu/ribbon-geometry">GitHub repo</a></p>
+</div>
+
+<script src="https://unpkg.com/three@0.130.0/build/three.min.js"></script>
+<script src="../dist/ribbon-geometry.js"></script>
+<script>
+const width  = window.innerWidth;
+const height = window.innerHeight;
+const clock = new THREE.Clock();
+const scene  = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera( 60, width / height, 0.01, 100 );
+const renderer = new THREE.WebGLRenderer();
+renderer.setSize( width, height );
+document.body.appendChild( renderer.domElement );
+
+const RibbonGeometry = generateRibbonGeometryClass( { THREE } );
+
+const curvePath = new THREE.CurvePath();
+curvePath.add( new THREE.CatmullRomCurve3( [
+	new THREE.Vector3( -10, 0, 10 ),
+	new THREE.Vector3( -5, 5, 5 ),
+	new THREE.Vector3( 0, 0, 0 ),
+	new THREE.Vector3( 5, -5, 5 ),
+	new THREE.Vector3( 10, 0, 10 )
+] ) );
+
+const uvMap = new THREE.TextureLoader().load( './_uv.png' );
+const mesh = new THREE.Mesh(
+	new RibbonGeometry( curvePath, 64 ),
+	new THREE.MeshBasicMaterial( { map: uvMap, side: THREE.DoubleSide } ),
+);
+scene.add( mesh );
+
+const gridHelper = new THREE.GridHelper( 50, 50 );
+scene.add( gridHelper );
+
+renderer.render( scene, camera );
+
+( function anim () {
+
+	const delta = clock.getDelta();
+	const elapsed = clock.getElapsedTime();
+
+	if ( elapsed > 30 ) { return; }
+
+	requestAnimationFrame( anim );
+
+	camera.position.set(
+		Math.sin( elapsed * .5 ) * 20,
+		10,
+		Math.cos( elapsed * .5 ) * 20
+	);
+	camera.lookAt( 0, 0, 0 );
+	renderer.render( scene, camera );
+
+} )();
+</script>
+
+</body>
+</html>

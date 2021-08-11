@@ -1,0 +1,79 @@
+{
+  "name": "ribbon-geometry",
+  "version": "0.1.0",
+  "author": "Yomotsu",
+  "license": "MIT",
+  "main": "dist/ribbon-geometry.js",
+  "jsnext:main": "dist/ribbon-geometry.module.js",
+  "module": "dist/ribbon-geometry.module.js",
+  "types": "dist/index.d.ts",
+  "repository": "yomotsu/ribbon-geometry",
+  "devDependencies": {
+    "@types/three": "^0.131.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.1",
+    "@typescript-eslint/parser": "^4.29.1",
+    "downlevel-dts": "^0.7.0",
+    "eslint": "^7.32.0",
+    "eslint-config-mdcs": "^5.0.0",
+    "rollup": "^2.56.2",
+    "rollup-plugin-typescript2": "^0.30.0",
+    "terser": "^5.7.1",
+    "three": ">=0.128.0",
+    "typescript": "^4.3.5"
+  },
+  "peerDependencies": {
+    "three": ">=0.131.3"
+  },
+  "scripts": {
+    "dev": "rollup --config --watch",
+    "build": "rollup --config && terser dist/ribbon-geometry.js -o dist/ribbon-geometry.min.js --comments '/^!/' && downlevel-dts . .",
+    "lint": "eslint src --ext ts"
+  },
+  "browserslist": [
+    "last 2 versions"
+  ],
+  "eslintConfig": {
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "extends": "mdcs",
+    "plugins": [
+      "@typescript-eslint"
+    ],
+    "rules": {
+      "no-unused-vars": 0,
+      "@typescript-eslint/no-unused-vars": 1,
+      "indent": 0,
+      "@typescript-eslint/indent": [
+        "error",
+        "tab",
+        {
+          "SwitchCase": 1,
+          "flatTernaryExpressions": true
+        }
+      ],
+      "no-multi-spaces": [
+        0
+      ],
+      "key-spacing": [
+        0
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "/dist/",
+    "/node_modules/"
+  ],
+  "typesVersions": {
+    "<=3.4.0-0": {
+      "*": [
+        "./"
+      ]
+    }
+  },
+  "keywords": [
+    "three",
+    "three.js",
+    "geometry",
+    "ribbon"
+  ]
+}
