@@ -41,7 +41,7 @@ curvePath.add( new THREE.LineCurve3(
 	new THREE.Vector3( 0,   .5, 0 ),
 ) );
 
-const uvMap = new THREE.TextureLoader().load( './_uv.png' );
+const uvMap = new THREE.TextureLoader().load( './uv.png' );
 const mesh = new THREE.Mesh(
 	new RibbonGeometry( curvePath, 8 ),
 	new THREE.MeshBasicMaterial( { map: uvMap, side: THREE.DoubleSide } ),

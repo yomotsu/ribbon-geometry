@@ -44,7 +44,7 @@ curvePath.add( new THREE.CatmullRomCurve3( [
 	new THREE.Vector3( 10, 0, 10 )
 ] ) );
 
-const uvMap = new THREE.TextureLoader().load( './_uv.png' );
+const uvMap = new THREE.TextureLoader().load( './uv.png' );
 const mesh = new THREE.Mesh(
 	new RibbonGeometry( curvePath, 64 ),
 	new THREE.MeshBasicMaterial( { map: uvMap, side: THREE.DoubleSide } ),

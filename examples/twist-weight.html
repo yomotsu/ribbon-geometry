@@ -35,7 +35,7 @@ renderer.setSize( width, height );
 document.body.appendChild( renderer.domElement );
 
 const RibbonGeometry = generateRibbonGeometryClass( { THREE } );
-const uvMap = new THREE.TextureLoader().load( './_uv.png' );
+const uvMap = new THREE.TextureLoader().load( './uv.png' );
 
 const curvePath = new THREE.CurvePath();
 curvePath.add( new THREE.LineCurve3(

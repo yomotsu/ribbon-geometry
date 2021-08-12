@@ -19,7 +19,7 @@ import * as THREE from 'three';
 import generateRibbonGeometryClass from 'ribbon-geometry';
 
 // inject three.js to the lib to make the Class.
-const RibbonGeometry = generateRibbonGeometryClass( { THREE: THREE } );
+const RibbonGeometry = generateRibbonGeometryClass( { THREE } );
 
 const width  = window.innerWidth;
 const height = window.innerHeight;
